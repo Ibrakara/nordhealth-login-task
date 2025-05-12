@@ -21,10 +21,10 @@ dl,
 dd {
   margin: 0;
   padding: 0;
+  color: var(--n-color-text-neutral);
 }
 
 body {
-  min-height: 100vh;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
@@ -58,4 +58,8 @@ ol[role="list"] {
 #app,
 #__nuxt {
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
