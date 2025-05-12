@@ -4,8 +4,6 @@
     :name="name"
     :label="label"
     :expand
-    :required
-    :hide-required="hideRequired"
     :type
     :placeholder
     :error="errorMessage"
@@ -21,16 +19,12 @@ interface Props {
   name: string;
   label?: string;
   expand?: boolean;
-  required?: boolean;
-  hideRequired?: boolean;
   type?: InputType;
   placeholder?: string;
 }
 
 const props = withDefaults(defineProps<Props>(), {
   expand: true,
-  required: false,
-  hideRequired: false,
   type: "text",
   placeholder: "",
   label: "",

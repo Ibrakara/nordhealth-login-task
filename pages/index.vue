@@ -15,7 +15,6 @@
             :expand="true"
             :hideRequired="true"
             type="email"
-            required
             placeholder="user@example.com"
             label="Username"
           />
@@ -25,7 +24,6 @@
             :expand="true"
             :hideRequired="true"
             :type="passwordVisible ? 'text' : 'password'"
-            required
             placeholder="••••••••"
             label="Password"
           >
@@ -66,20 +64,32 @@
 <script setup lang="ts">
 import logo from "~/assets/images/provet-cloud-logo.png";
 import { ref } from "vue";
+import { useRouter } from "vue-router"; // Import useRouter
 import { useForm } from "vee-validate";
 import { z } from "zod";
 import { toTypedSchema } from "@vee-validate/zod";
 
+// Set the page title
+useHead({
+  title: "Sign Up - Provet Cloud",
+});
+//router
+const router = useRouter();
+
+// Global state
+const formSubmitted = useState("formSubmitted", () => false);
+
 //states
 const schema = z.object({
-  email: z.string().min(1, "Email is required").email("Invalid email"),
-  password: z.string().min(6, "Password must be at least 6 characters"),
+  email: z.string().nonempty("Email is required").email("Invalid email"),
+  password: z
+    .string()
+    .nonempty("Password is required")
+    .min(6, "Password must be at least 6 characters"),
 });
-
 const { handleSubmit, resetForm } = useForm({
   validationSchema: toTypedSchema(schema),
 });
-
 const receiveUpdates = ref(false);
 const passwordVisible = ref(false);
 
@@ -88,7 +98,9 @@ const togglePasswordVisibility = () => {
   passwordVisible.value = !passwordVisible.value;
 };
 const onSubmit = handleSubmit(() => {
+  formSubmitted.value = true;
   resetFormValues();
+  router.push("/success");
 });
 function resetFormValues() {
   resetForm({
@@ -102,7 +114,6 @@ function resetFormValues() {
   receiveUpdates.value = false;
 }
 </script>
-
 <style scoped>
 .signup-page-container {
   max-width: 340px;
