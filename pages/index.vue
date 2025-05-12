@@ -76,9 +76,10 @@ const schema = z.object({
   password: z.string().min(6, "Password must be at least 6 characters"),
 });
 
-const { handleSubmit } = useForm({
+const { handleSubmit, resetForm } = useForm({
   validationSchema: toTypedSchema(schema),
 });
+
 const receiveUpdates = ref(false);
 const passwordVisible = ref(false);
 
@@ -86,12 +87,20 @@ const passwordVisible = ref(false);
 const togglePasswordVisibility = () => {
   passwordVisible.value = !passwordVisible.value;
 };
-const onSubmit = handleSubmit((values) => {
-  console.log("Form submitted with values:", {
-    ...values,
-    receiveUpdates: receiveUpdates.value,
-  });
+const onSubmit = handleSubmit(() => {
+  resetFormValues();
 });
+function resetFormValues() {
+  resetForm({
+    values: {
+      email: "",
+      password: "",
+    },
+    errors: {},
+    touched: {},
+  });
+  receiveUpdates.value = false;
+}
 </script>
 
 <style scoped>
