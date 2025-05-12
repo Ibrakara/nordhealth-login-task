@@ -64,7 +64,7 @@
 </template>
 
 <script setup lang="ts">
-import logo from "/assets/images/provet-cloud-logo.png";
+import logo from "~/assets/images/provet-cloud-logo.png";
 import { ref } from "vue";
 import { useForm } from "vee-validate";
 import { z } from "zod";
