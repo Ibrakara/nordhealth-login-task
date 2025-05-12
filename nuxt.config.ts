@@ -5,6 +5,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ["@nuxt/eslint", "@nuxt/image", "@nuxt/scripts", "@nuxt/test-utils"],
   plugins: ["~/plugins/provet-web-components.ts"],
+  css: ["~/assets/css/reset.css"],
   vue: {
     compilerOptions: {
       isCustomElement: (tag) => tag.includes("-"),
