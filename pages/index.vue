@@ -28,6 +28,7 @@
             <provet-button
               type="button"
               slot="end"
+              data-test-id="password-toggle-button"
               aria-describedby="password-tooltip"
               square
               @click="togglePasswordVisibility"
@@ -46,11 +47,17 @@
             Show / hide password
           </provet-tooltip>
           <provet-checkbox
+            id="updates-checkbox"
             type="checkbox"
             v-model="receiveUpdates"
             label="I want to receive product updates announcements"
           />
-          <provet-button type="submit" expand variant="primary">
+          <provet-button
+            data-test-id="form-submit-button"
+            type="submit"
+            expand
+            variant="primary"
+          >
             Sign up
           </provet-button>
         </provet-stack>

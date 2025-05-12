@@ -12,7 +12,7 @@
     <h1>Success!</h1>
     <p>You have successfully signed up for the product.</p>
 
-    <provet-button @click="$router.push('/')">
+    <provet-button data-test-id="back-button" @click="$router.push('/')">
       <provet-icon slot="start" name="arrow-left-long"></provet-icon>
       Back
     </provet-button>
