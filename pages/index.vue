@@ -13,7 +13,6 @@
             id="email-input"
             name="email"
             :expand="true"
-            :hideRequired="true"
             type="email"
             placeholder="user@example.com"
             label="Username"
@@ -22,7 +21,6 @@
             id="password-input"
             name="password"
             :expand="true"
-            :hideRequired="true"
             :type="passwordVisible ? 'text' : 'password'"
             placeholder="••••••••"
             label="Password"
@@ -81,10 +79,10 @@ const formSubmitted = useState("formSubmitted", () => false);
 
 //states
 const schema = z.object({
-  email: z.string().nonempty("Email is required").email("Invalid email"),
+  email: z.string().nonempty("Required").email("Invalid email"),
   password: z
     .string()
-    .nonempty("Password is required")
+    .nonempty("Required")
     .min(6, "Password must be at least 6 characters"),
 });
 const { handleSubmit, resetForm } = useForm({
