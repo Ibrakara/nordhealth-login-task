@@ -70,27 +70,22 @@ import { useForm } from "vee-validate";
 import { z } from "zod";
 import { toTypedSchema } from "@vee-validate/zod";
 
-// Define the validation schema
+//states
 const schema = z.object({
   email: z.string().min(1, "Email is required").email("Invalid email"),
   password: z.string().min(6, "Password must be at least 6 characters"),
 });
 
-// Initialize the form with the schema
-const { handleSubmit, errors } = useForm({
+const { handleSubmit } = useForm({
   validationSchema: toTypedSchema(schema),
 });
-
-// Reactive state
 const receiveUpdates = ref(false);
 const passwordVisible = ref(false);
 
-// Toggle password visibility
+//functions
 const togglePasswordVisibility = () => {
   passwordVisible.value = !passwordVisible.value;
 };
-
-// Handle form submission
 const onSubmit = handleSubmit((values) => {
   console.log("Form submitted with values:", {
     ...values,

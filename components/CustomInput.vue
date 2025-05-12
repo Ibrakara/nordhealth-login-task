@@ -17,7 +17,6 @@
 <script setup lang="ts">
 import { useField } from "vee-validate";
 import type { InputType } from "~/types/types";
-// Define the props interface
 interface Props {
   name: string;
   label?: string;
@@ -28,7 +27,6 @@ interface Props {
   placeholder?: string;
 }
 
-// Apply defaults using `withDefaults`
 const props = withDefaults(defineProps<Props>(), {
   expand: true,
   required: false,
